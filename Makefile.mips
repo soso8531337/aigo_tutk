@@ -1,0 +1,13 @@
+#CFLAGS=-L../Mips_MT7688_4.8.3/ -I../Include
+export PATH=/home/dongxiangqian/baidu/pcs/opt/buildroot-gcc342/bin:/usr/kerberos/bin:/usr/local/bin:/bin:/usr/bin:/opt/buildroot-gcc342/bin:/home/dongxiangqian/bin
+CC=mipsel-linux-gcc
+CFLAGS=-L./lib -I./include
+all:
+	@echo === Target Platform [$(platform)] ===
+	mipsel-linux-gcc -s $(CFLAGS) -O2 -Wall P2PTunnelServer.c  -lP2PTunnelAPIs -lRDTAPIs -lIOTCAPIs -lpthread -lrt -o P2PTunnelServer
+	mipsel-linux-gcc -s $(CFLAGS) -O2 -Wall P2PTunnelAgent.c  -lP2PTunnelAPIs -lRDTAPIs -lIOTCAPIs -lpthread -lrt -o P2PTunnelAgent
+	mipsel-linux-gcc -s $(CFLAGS) -O2 -Wall P2PTunnelServer.c  -lP2PTunnelAPIsT -lRDTAPIsT -lIOTCAPIsT -lpthread -lrt -o P2PTunnelServer.log
+
+
+clean:
+	rm -rf *.o *~ *.bak P2PTunnelServer P2PTunnelAgent
